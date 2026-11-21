@@ -24,6 +24,7 @@
   var tipo = new URLSearchParams(location.search).get("tipo");
   if (tipo === "smartphone") f.kind.value = "Smartphone";
   if (tipo === "pc") f.kind.value = "PC";
+  if (tipo === "console") f.kind.value = "Console (PS4 / PS5)";
 
   function val(el) { return (el.value || "").trim(); }
 
