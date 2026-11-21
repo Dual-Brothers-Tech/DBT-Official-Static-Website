@@ -1,0 +1,68 @@
+/* Easter egg "Powered by Citadel" – palette e font ripresi dal terminale della Citadel */
+@font-face{font-family:"VT323";src:url("../fonts/vt323.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+
+.powered{margin:14px 0 0;text-align:center;font-size:.9rem;letter-spacing:.04em}
+.site-footer .powered a.cx-link,.cx-red{color:#ff3b30;font-weight:700;text-decoration:none;border-bottom:1px solid transparent}
+.site-footer .powered a.cx-link:hover{color:#ff3b30;border-bottom-color:#ff3b30}
+.cx-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* emblema ASCII (colori come nel sito Citadel) */
+.cx-ascii{margin:0;font-family:ui-monospace,"Cascadia Mono","Cascadia Code",Consolas,"SF Mono","Liberation Mono","Courier New",monospace;line-height:1;white-space:pre;overflow:hidden;user-select:none;font-size:clamp(6px,1.9vw,15px);text-shadow:none}
+.cx-ascii .g{color:#8f8f8f}
+.cx-ascii .r{color:#ff3b30;text-shadow:0 0 6px rgba(255,59,48,.7)}
+
+/* emblema "da sempre sotto" il sito */
+#cx-bg{position:fixed;inset:0;z-index:-1;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:var(--cx-e,0);transition:opacity .8s}
+
+/* ---- decadimento progressivo ---- */
+html.cx-on *{transition:color .5s,background-color .5s,border-color .5s,opacity .6s,transform .6s,filter .6s}
+html.cx-on .cx-immune,html.cx-on .cx-immune *{transition:none}
+
+html.cx-s1 body{filter:saturate(.8) contrast(1.05)}
+html.cx-s1::after,html.cx-s2::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9000;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);opacity:calc(var(--cx-l,0)*.025)}
+html.cx-s1 .cx-frag{animation:cx-jit 1.8s steps(1) infinite}
+html.cx-s1 .cx-frag:nth-child(3n){animation-delay:.4s}
+html.cx-s1 .cx-frag:nth-child(3n+1){animation-delay:.9s}
+
+html.cx-s2 body{filter:saturate(.45) contrast(1.15);font-family:ui-monospace,"Cascadia Mono",Consolas,"Liberation Mono","Courier New",monospace}
+html.cx-s2 .card,html.cx-s2 .steps li,html.cx-s2 .svc-list li,html.cx-s2 .faq,html.cx-s2 .box,html.cx-s2 .info{border-style:dashed}
+html.cx-s2 img{filter:contrast(1.3) hue-rotate(calc(var(--cx-l,0)*4deg))}
+
+/* sfondi che cedono: appare il livello sottostante */
+html.cx-s3{background:#050000}
+html.cx-s3 body *:not(.cx-immune):not(.cx-immune *){background:transparent !important;box-shadow:none !important;border-color:rgba(255,59,48,.5) !important;color:#ff5a4e !important;text-shadow:0 0 5px rgba(255,59,48,.35)}
+html.cx-s3 body{filter:none;background:transparent !important}
+html.cx-s3 .cx-frag{transform:translate(calc(var(--cx-dx)*var(--cx-q)*38px),calc(var(--cx-dy)*var(--cx-q)*46px)) rotate(calc(var(--cx-r)*var(--cx-q)*7deg));opacity:calc(1 - var(--cx-q)*.85)}
+html.cx-s3 img{filter:grayscale(1) contrast(1.4);opacity:calc(1 - var(--cx-q)*.9)}
+html.cx-s3 .site-footer,html.cx-s3 .cta-band{border-top-color:rgba(255,59,48,.3) !important}
+html.cx-s3 .site-footer .powered,html.cx-s3 .site-footer .powered *{color:inherit}
+html.cx-s3 .site-footer .powered{color:#c9ccd3 !important}
+html.cx-s3 .site-footer .powered a.cx-link{color:#ff3b30 !important}
+
+html.cx-s4 .cx-frag{opacity:calc(1 - var(--cx-q)*1.05)}
+html.cx-s4 .site-footer .powered{position:fixed;left:0;right:0;bottom:26px;margin:0;z-index:9500;background:transparent !important}
+
+@keyframes cx-jit{0%{transform:translate(0,0)}25%{transform:translate(1px,-1px)}50%{transform:translate(-1px,0)}75%{transform:translate(0,1px)}100%{transform:translate(0,0)}}
+
+/* ---- scena finale ---- */
+html.cx-final-on::after{display:none}
+html.cx-final-on,html.cx-final-on body{overflow:hidden}
+#cx-final{position:fixed;inset:0;z-index:99999;background:#050000;color:#ff5a4e;font-family:"VT323",ui-monospace,Consolas,"Courier New",monospace;font-size:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px 80px;animation:cx-in .5s ease-out both}
+#cx-final .cx-wrap{width:min(44rem,100%);display:flex;flex-direction:column;align-items:center;gap:22px}
+.cx-ascii-final{font-size:clamp(5px,1.5vw,11px)}
+.cx-console{width:100%;border:1px solid #ff3b30;background:linear-gradient(180deg,#120404,#080101);box-shadow:0 0 0 1px #000,0 0 18px rgba(255,59,48,.22),inset 0 0 30px rgba(255,59,48,.07);padding:0 1rem 1rem;min-height:7.5rem}
+.cx-bar{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:0 -1rem .8rem;padding:.3rem 1rem;background:#ff3b30;color:#000;font-size:.74rem;letter-spacing:.14em;text-shadow:none}
+.cx-line{margin:.6rem 0 0;font-size:1rem;color:#ff8a7e;text-shadow:0 0 6px rgba(255,59,48,.6);overflow-wrap:anywhere}
+.cx-prompt{color:#ff3b30}
+.cx-cursor{color:#ff3b30;animation:cx-blink 1s steps(1) infinite}
+.cx-powered{position:fixed;left:0;right:0;bottom:26px;margin:0;text-align:center;font-size:1.05rem;letter-spacing:.05em;color:#c9ccd3;text-shadow:none}
+.cx-powered .cx-red{color:#ff3b30;border:0}
+@keyframes cx-blink{50%{opacity:0}}
+@keyframes cx-in{from{opacity:0}to{opacity:1}}
+
+@media (prefers-reduced-motion:reduce){
+  html.cx-s1 .cx-frag{animation:none}
+  html.cx-on *{transition:none}
+  #cx-final{animation:none}
+  .cx-cursor{animation:none}
+}
