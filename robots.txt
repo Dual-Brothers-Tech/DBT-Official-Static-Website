@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dual-brothers-tech.github.io/DBT-Official-Static-Website/sitemap.xml
